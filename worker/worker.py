@@ -69,7 +69,6 @@ class PDFChunker:
 
 class VectorStoreIndexer:
     def __init__(self, persist_directory="./db"):
-        # Use a local open-source embedding model (can be changed)
         self.embedding_fn = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
         self.persist_directory = persist_directory
         self.vector_db = Chroma(

@@ -4,9 +4,7 @@ import redis
 import traceback
 from azure.storage.blob import BlobServiceClient
 from worker import PDFWorker
-# Exemple de bibliothèques de traitement PDF (à installer via pip)
-# from PyPDF2 import PdfReader
-# from pdfminer.high_level import extract_text
+
 
 class PDFProcessor:
     def __init__(self, redis_host, redis_port, connection_string, input_container_name, output_container_name, redis_db=0):
@@ -16,8 +14,8 @@ class PDFProcessor:
         self.output_container_client = self.blob_service_client.get_container_client(output_container_name)
         self.pdf_queue_name = "pdf_queue"
         self.pdf_status_prefix = "pdf_status:"
-        self.local_download_dir = "./tmp/pdfs" # Répertoire temporaire pour télécharger les PDF
-        self.local_output_dir = "./tmp/output" # Répertoire temporaire pour les résultats
+        self.local_download_dir = "./tmp/pdfs" 
+        self.local_output_dir = "./tmp/output" 
 
         os.makedirs(self.local_download_dir, exist_ok=True)
         os.makedirs(self.local_output_dir, exist_ok=True)
@@ -45,7 +43,6 @@ class PDFProcessor:
                         download_file.write(self.input_container_client.download_blob(blob_name).readall())
 
                     # --- Logique de traitement du PDF --- #
-                    # Remplacez ceci par votre logique de traitement PDF réelle
                         process= PDFWorker()
                         process.process_pdf(local_pdf_path)
                     time.sleep(2) # Simuler un travail long
@@ -59,7 +56,6 @@ class PDFProcessor:
                     print(f"[Worker] Erreur de traitement: {error_msg}")
                     self._update_status(blob_name, "failed", error_message=error_msg, end_time=time.time())
                 finally:
-                    # Nettoyer les fichiers temporaires
                     if os.path.exists(local_pdf_path):
                         os.remove(local_pdf_path)
                     if os.path.exists(local_output_path):

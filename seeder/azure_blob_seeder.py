@@ -43,7 +43,6 @@ class AzureBlobSeeder:
     def process_new_pdf(self, blob_name):
         logger.info(f"Nouveau PDF détecté dans Azure Blob: {blob_name}")
 
-        # Ajouter le nom du blob (qui sert d'ID) à la file d'attente Redis
         self.redis_client.lpush(self.pdf_queue_name, blob_name)
 
         # Initialiser le statut dans Redis
@@ -53,7 +52,6 @@ class AzureBlobSeeder:
             "timestamp": time.time()
         })
 
-        # Ajouter le blob au set des blobs traités pour éviter de le re-traiter
         self.redis_client.sadd(self.processed_blobs_key, blob_name)
 
         logger.info(f"Ajouté {blob_name} à la file d'attente Redis et statut initialisé à 'pending'.")
