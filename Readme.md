@@ -65,14 +65,15 @@ docker build -t <username>/base-tower-agent -f docker/Dockerfile.base .
 docker build -t <username>/seeder:latest -f docker/seeder.Dockerfile .
 docker build -t <username>/worker:latest -f docker/worker.Dockerfile .
 ```
+### 3.  Run Workers
+
+```bash
+docker stack deploy -c swarm/stack.yml tower-agent```
 
 ### 3. 🔐 Set API Key
 
 Set your **Mistral API Key** as an environment variable:
 
-```bash
-export MISTRAL_API_KEY=your_api_key_here
-```
 
 ### 4. ▶️ Run the Multi-Agent System
 
