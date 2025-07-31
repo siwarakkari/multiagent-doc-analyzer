@@ -2,7 +2,7 @@
 
 This project implements a robust multi-agent AI system designed to ingest, process, and interact with PDF documents. It enables users to query, summarize, and engage in dialogue with AI agents based on ingested PDF content.
 
-![alt text](image.png)
+![alt text](image-1.png)
 
 ---
 

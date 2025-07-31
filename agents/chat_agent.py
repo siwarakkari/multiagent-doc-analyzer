@@ -12,8 +12,8 @@ class ChatAgent(BaseAgent):
     def __init__(self, name: str, description: str):
         super().__init__(name, description)
         self.llm = init_chat_model("mistral-small-latest", model_provider="mistralai")
-
     def run(self, query: str):
-        return self.llm.invoke("Respond the following query:{query}")
+        return self.llm.invoke(f"Respond to the following query: {query}")
+
     
 
