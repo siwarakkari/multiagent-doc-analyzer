@@ -1,0 +1,11 @@
+redis
+azure-storage-blob
+langchain
+chromadb
+sentence-transformers
+pdfplumber
+PyMuPDF
+pytesseract
+langchain_huggingface
+langchain_chroma
+langchain-mistralai
